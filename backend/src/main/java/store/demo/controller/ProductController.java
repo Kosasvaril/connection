@@ -20,14 +20,12 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-
     @CrossOrigin
     @GetMapping("/main")
     @ResponseBody
-    public ResponseEntity<String> main(){
+    public String main(){
         List<Products> productList = productRepository.findAll();
-        System.out.println("SEMMI");
-        return ResponseEntity.ok(productList.toString());
+        return productList.get(0).getName();
     }
 
 }

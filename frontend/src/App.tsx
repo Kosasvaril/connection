@@ -8,7 +8,6 @@ function App() {
   useEffect(()=>{
     axios.get('http://localhost:8080/demostore/main')
       .then(response =>{
-        console.log("VÁLASZ")
         setMessage(response.data)
       })
       .catch(error =>{
