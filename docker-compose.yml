@@ -1,18 +1,18 @@
 version: '3'
 services:
   db:
-     image: postgres:latest
+     image: postgres:16
      container_name: postgres-container
      environment:
        - POSTGRES_USER=postgres
        - POSTGRES_PASSWORD=1234
-  app:
-    image: connection:latest
-    container_name: current_joy
+  backend:
+    image: c_back
     build:
-      context: .
+      context: ./backend
+    container_name: store_backend_container
     depends_on:
-              - db
+      - db
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
       - SPRING_DATASOURCE_USERNAME=postgres
@@ -20,3 +20,12 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     ports:
       - "8080:8080"
+  frontend:
+    image: c_front
+    container_name: frontend_container
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    build:
+      context: ./frontend
