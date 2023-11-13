@@ -1,0 +1,4 @@
+FROM postgres:16
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=1234
+ENV CONTAINER_NAME=postgres-container
